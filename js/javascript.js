@@ -15,25 +15,25 @@ function playRound (playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase()
     computerSelection = computerSelection.toLowerCase()
     if (playerSelection === computerSelection) {
-        console.log("It's A Draw!")
+        return ("It's A Draw!")
     } else {
         if (playerSelection === "rock") {
             if (computerSelection === "paper") {
-                console.log("You Lose! Paper beats Rock")
+                return ("You Lose! Paper beats Rock")
             } else {
-                console.log("You Win! Rock beats Scissors")
+                return ("You Win! Rock beats Scissors")
             }
         } else if (playerSelection === "paper") {
             if (computerSelection === "rock") {
-                console.log("You Win! Paper beats Rock!")
+                return ("You Win! Paper beats Rock!")
             } else {
-                console.log("You Lose! Scissors beat Paper")
+                return ("You Lose! Scissors beat Paper")
             }
         } else {
             if (computerSelection === "rock") {
-                console.log("You Lose! Rock beats Scissors")
+                return ("You Lose! Rock beats Scissors")
             } else {
-                console.log("You Win! Scissors beat Paper")
+                return ("You Win! Scissors beat Paper")
             }
         }
     }
