@@ -1,3 +1,142 @@
+@font-face {
+    font-family: Street-Fighter;
+    src: url(../fonts/Act_Of_Rejection.ttf);
+}
+
 body {
     font-family: sans-serif;
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.header {
+    max-height: 400px;
+    height: 100%;
+    margin-top: 40px;
+    font-family: Street-Fighter;
+    font-size: min(3vw, 2em);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.resolution {
+    max-width: 1080px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resolution div {
+    max-width: 40vw;
+    border-style: solid;
+    border-color: black;
+    border-width: 8px;
+    border-radius: 25px;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resolution img {
+    max-width: 100%;
+    height: auto;
+}
+
+.resolution h2 {
+    font-family: Street-Fighter;
+    font-size: min(8vw, 3em);
+    padding: 0.5em;
+}
+
+.choice {
+    max-width: 1080px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: white;
+    border-width: 8px;
+    border-radius: 25px;
+    border-color: black;
+    max-width: 25vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+button:active {
+    border-color: darkgray;
+    border-style: solid;
+}
+
+button.rock {
+    padding: 20px;
+}
+
+button.paper {
+    padding: 20px;
+    margin: 0 40px;
+}
+
+button.scissors {
+    padding: 20px;
+}
+
+.choice img {
+    max-width: 100%;
+    height: auto;
+}
+
+.game_text {
+    font-family: Street-Fighter;
+    font-size: min(3vw, 2em);
+}
+
+.attributions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.attributions a {
+    color: black;
+    text-decoration: none;
+    font-size: 0.75em;
+}
+
+.footer {
+    font-family: Street-Fighter;
+    font-size: 1em;
+    height: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
