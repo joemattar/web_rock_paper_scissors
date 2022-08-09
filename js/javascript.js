@@ -53,8 +53,11 @@ function disableButtons() {
 // Functions to enable buttons
 function enableButtons() {
     rockButton.disabled = false;
+    rockButton.active = false;
     paperButton.disabled = false;
+    paperButton.active = false;
     scissorsButton.disabled = false;
+    scissorsButton.active = false;
 }
 
 // Returns a random computer choice. Independent of GUI
@@ -82,7 +85,11 @@ function displayComputerSelection() {
 // Resolves a game round
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-
+        displaySelectionEffect(playerDiv);
+        displaySelectionEffect(computerDiv);
+        setTimeout(() => {
+            displaySpanEffect(spanRound);       
+        }, 1000);
     } else {
         if (playerSelection === "rock") {
             if (computerSelection === "paper") {
@@ -103,42 +110,49 @@ function playRound (playerSelection, computerSelection) {
                 playerScores();
             }
         }
-        setTimeout(roundAdvance, 1000);
-    }
-
+        if (playerScore < 3 && computerScore <3) {
+            setTimeout(roundAdvance, 1000);
+        }        
+    }    
+    
     setTimeout(() => {
-        displaySelectionEffect(spanRound);       
+        if (playerScore === 3) {
+            spanMake_choice.textContent = "GAME OVER. YOU WIN! ";
+            displaySpanEffect(spanMake_choice);
+            aNew_game.textContent = "NEW GAME?"
+        } else if (computerScore === 3) {
+            spanMake_choice.textContent = "GAME OVER. YOU LOSE! ";
+            displaySpanEffect(spanMake_choice);
+            aNew_game.textContent = "NEW GAME?"
+        } else {
+            setTimeout(enableButtons, 1000);
+        }
     }, 1000);
 
-    setTimeout(enableButtons(), 1000);
-
-    if (playerScore === 3) {
-        disableButtons();
-        spanMake_choice.textContent = "GAME OVER. YOU WIN! ";
-        aNew_game.textContent = "NEW GAME?"
-    } else if (computerScore === 3) {
-        disableButtons();
-        spanMake_choice.textContent = "GAME OVER. YOU LOSE! ";
-        aNew_game.textContent = "NEW GAME?"
-    }
 }
 
 function playerScores() {
     playerScore += 1;
     spanPlayerScore.textContent = playerScore.toString();
-    displaySelectionEffect(spanPlayerScore);
+    displaySpanEffect(spanPlayerScore);
 }
 
 function computerScores() {
     computerScore += 1;
     spanComputerScore.textContent = computerScore.toString();
-    displaySelectionEffect(spanComputerScore);
+    displaySpanEffect(spanComputerScore);
 }
 
 function roundAdvance() {
     round += 1;
     spanRound.textContent = round.toString();
-    displaySelectionEffect(spanRound);
+    displaySpanEffect(spanRound);
+}
+
+//span tags growing effect
+function displaySpanEffect (tag) {
+    tag.classList.add("growing")
+    tag.addEventListener("transitionend", () => tag.classList.remove("growing"))
 }
 
 rockButton.addEventListener("click", displayPlayerSelection.bind(null, playerSelection="rock"));        

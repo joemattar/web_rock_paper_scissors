@@ -36,6 +36,19 @@ h2 {
     text-align: center;
 }
 
+span {
+    transition: all .5s ease;
+}
+
+.growing {
+    transform: scale(10);
+    color: darkred;
+    border-radius: 40px;
+    border-color: darkred;
+    box-shadow: 0 0 2rem darkred;
+    padding: 10px 40px;
+}
+
 .resolution {
     max-width: 800px;
     width: 100%;
