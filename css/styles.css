@@ -1,6 +1,6 @@
 @font-face {
     font-family: Street-Fighter;
-    src: url(../fonts/Act_Of_Rejection.ttf);
+    src: url(../fonts/Street_Fighter.ttf);
 }
 
 body {
@@ -101,6 +101,15 @@ button:hover {
 button:active {
     border-color: darkgray;
     border-style: solid;
+}
+
+button:disabled {
+    border-color: darkgray;
+    border-style: solid;
+}
+
+button:disabled:hover {
+    background-color: white;
 }
 
 button.rock {
