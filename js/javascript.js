@@ -5,6 +5,10 @@ let computerChoice = "";
 const rockButton = document.querySelector("button.rock");
 const paperButton = document.querySelector("button.paper");
 const scissorsButton = document.querySelector("button.scissors");
+const playerDiv = document.querySelector("div.player");
+const computerDiv = document.querySelector("div.computer");
+const playerImg = document.querySelector("img.player");
+const computerImg = document.querySelector("img.computer");
 
 // User is either Player or Computer
 // Returns a random computer choice. Independent of GUI
@@ -22,27 +26,19 @@ function getComputerChoice () {
 }
 
 // Displays user selection in the respective img tag of div .resolution
-function displaySelection (user, userSelection) {
-    const userDiv = document.querySelector(`div.${user}`);
-    const userImg = document.querySelector(`img.${user}`);
-    if (userSelection === "rock") {
+function displayPlayerSelection (playerSelection) {
+    if (playerSelection === "rock") {
         userImg.src = "./images/hand_rock.png";
-        displaySelectionEffect(userDiv);
-        if (user === "player") {
-            playerChoice = "rock";
-        }
-    } else if (userSelection === "paper") {
+        displaySelectionEffect(playerDiv);
+        playerChoice = "rock";
+        } else if (playerSelection === "paper") {
         userImg.src = "./images/hand_paper.png";
-        displaySelectionEffect(userDiv);
-        if (user === "player") {
-            playerChoice = "paper";
-        }
-    } else if (userSelection === "scissors") {
+        displaySelectionEffect(playerDiv);
+        playerChoice = "paper";
+    } else if (playerSelection === "scissors") {
         userImg.src = "./images/hand_scissors.png";
-        displaySelectionEffect(userDiv);
-        if (user === "player") {
-            playerChoice = "scissors";
-        }
+        displaySelectionEffect(playerDiv);
+        playerChoice = "scissors";
     }
     disableButtons();    
 }
@@ -53,14 +49,14 @@ function displaySelectionEffect (div) {
     div.addEventListener("transitionend", () => div.classList.remove("selecting"))
 }
 
-
-// Functions to disable and enable buttons
+// Functions to disable buttons
 function disableButtons() {
     rockButton.disabled = true;
     paperButton.disabled = true;
     scissorsButton.disabled = true;
 }
 
+// Functions to enable buttons
 function enableButtons() {
     rockButton.disabled = false;
     paperButton.disabled = false;
@@ -69,12 +65,11 @@ function enableButtons() {
 
 
 
+rockButton.addEventListener("click", displayPlayerSelection.bind(null, user="player", playerSelection="rock"));        
+paperButton.addEventListener("click", displayPlayerSelection.bind(null, user="player", playerSelection="paper"));
+scissorsButton.addEventListener("click", displayPlayerSelection.bind(null, user="player", playerSelection="scissors"));
 
-rockButton.addEventListener("click", displaySelection.bind(null, user="player", userSelection="rock"));
-        
-paperButton.addEventListener("click", displaySelection.bind(null, user="player", userSelection="paper"));
 
-scissorsButton.addEventListener("click", displaySelection.bind(null, user="player", userSelection="scissors"));
 
 
 function playRound (playerSelection, computerSelection) {
@@ -123,12 +118,7 @@ function displaySelections (playerSelection, computerSelection) {
 }
 
 function game () {
-    while (playerScore < 3 && computerScore < 3) {
-
-
-
-
-        
+    while (playerScore < 3 && computerScore < 3) {        
 
         let result = playRound(playerChoice, getComputerChoice());
         if (result === "win") {
