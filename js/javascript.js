@@ -1,19 +1,55 @@
+// User is either Player or Computer
+// Returns a random computer choice. Independent of GUI
 function getComputerChoice () {
     let randomNumber = Math.floor(Math.random()*3) + 1;
     let randomChoice = "";
     if (randomNumber === 1) {
-        randomChoice = "Rock";
+        randomChoice = "rock";
     } else if (randomNumber === 2) {
-        randomChoice = "Paper";
+        randomChoice = "paper";
     } else {
-        randomChoice = "Scissors";
+        randomChoice = "scissors";
     }
     return randomChoice
 }
 
+// Displays user selection in the respective img tag of div .resolution
+function displaySelection (user, userSelection) {
+    const userDiv = document.querySelector(`div.${user}`);
+    const userImg = document.querySelector(`img.${user}`);
+    if (userSelection === "rock") {
+        userImg.src = "./images/hand_rock.png";
+        displaySelectionEffect(userDiv);
+    } else if (userSelection === "paper") {
+        userImg.src = "./images/hand_paper.png";
+        displaySelectionEffect(userDiv);
+    } else if (userSelection === "scissors") {
+        userImg.src = "./images/hand_scissors.png";
+        displaySelectionEffect(userDiv);
+    }    
+}
+
+//.resolution div selection effect
+function displaySelectionEffect (div) {
+    div.classList.add("selecting")
+    div.addEventListener("transitionend", () => div.classList.remove("selecting"))
+}
+
+
+
+
+const rockButton = document.querySelector("button.rock");
+rockButton.addEventListener("click", displaySelection.bind(null, user="player", userSelection="rock"));
+
+const paperButton = document.querySelector("button.paper");
+paperButton.addEventListener("click", displaySelection.bind(null, user="player", userSelection="paper"));
+
+const scissorsButton = document.querySelector("button.scissors");
+scissorsButton.addEventListener("click", displaySelection.bind(null, user="player", userSelection="scissors"));
+
+
 function playRound (playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
     if (playerSelection === computerSelection) {
         displaySelections(playerSelection, computerSelection)
         console.log("It's A Draw!");

@@ -54,7 +54,14 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .1s ease;
 }
+
+.selecting {
+    transform: scale(1.2);
+    border-color: darkred;
+    box-shadow: 0 0 2rem darkred;
+  }
 
 .resolution img {
     max-width: 100%;
@@ -124,8 +131,9 @@ button.scissors {
     gap: 20px;
 }
 
-.game_updates {
-    display: flex;
+.game_text a {
+    text-decoration: none;
+    color: darkred;
 }
 
 .attributions {
