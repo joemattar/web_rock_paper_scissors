@@ -16,7 +16,7 @@ body {
     max-height: 400px;
     margin-top: 40px;
     font-family: Street-Fighter;
-    font-size: min(3vw, 2em);
+    font-size: min(3vw, 1.5em);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +37,7 @@ h2 {
 }
 
 .resolution {
-    max-width: 1000px;
+    max-width: 800px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -68,7 +68,7 @@ h2 {
 }
 
 .choice {
-    max-width: 1000px;
+    max-width: 800px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -146,7 +146,7 @@ button.scissors {
 
 .footer {
     font-family: Street-Fighter;
-    font-size: min(2.5vw, 1.5em);
+    font-size: min(3vw, 1.5em);
     height: 2em;
     display: flex;
     justify-content: center;
