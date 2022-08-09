@@ -1,3 +1,4 @@
+let round = 1;
 let playerScore = 0;
 let computerScore = 0;
 let playerChoice = "";
@@ -13,8 +14,9 @@ const spanRound = document.querySelector("span.round");
 const spanPlayerScore = document.querySelector("span.player");
 const spanComputerScore = document.querySelector("span.computer");
 const spanMake_choice = document.querySelector("span.make_choice");
+const aNew_game = document.querySelector("a.new_game");
 
-// Displays user selection in the respective img tag of div .resolution
+// Displays player selection in the player img tag of div .resolution
 function displayPlayerSelection (playerSelection) {
     if (playerSelection === "rock") {
         playerImg.src = "./images/hand_rock.png";
@@ -69,77 +71,55 @@ function getComputerChoice () {
     return randomChoice
 }
 
+// Displays computer selection in the computer img tag of div .resolution
 function displayComputerSelection() {
     computerChoice = getComputerChoice();
     computerImg.src = `./images/hand_${computerChoice}.png`;
     displaySelectionEffect(computerDiv);
-
+    setTimeout(playRound.bind(null, playerSelection=playerChoice, computerSelection=computerChoice), 1000);
 }
 
+// Resolves a game round
+function playRound (playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+
+    } else {
+        if (playerSelection === "rock") {
+            if (computerSelection === "paper") {
+                computerScore += 1;
+            } else {
+                playerScore += 1;
+            } 
+        } else if (playerSelection === "paper") {
+            if (computerSelection === "rock") {
+                playerScore += 1;
+            } else {
+                computerScore += 1;
+            }
+        } else if (playerSelection === "scissors") {
+            if (computerSelection === "rock") {
+                computerScore += 1;
+            } else {
+                playerScore += 1;
+            }
+        }
+        round += 1;
+    }
 
 
+    enableButtons();
 
-
-
+    if (playerScore === 3) {
+        disableButtons();
+        spanMake_choice.textContent = "GAME OVER. YOU WIN! ";
+        aNew_game.textContent = "NEW GAME?"
+    } else if (computerScore === 3) {
+        disableButtons();
+        spanMake_choice.textContent = "GAME OVER. YOU LOSE! ";
+        aNew_game.textContent = "NEW GAME?"
+    }
+}
 
 rockButton.addEventListener("click", displayPlayerSelection.bind(null, playerSelection="rock"));        
 paperButton.addEventListener("click", displayPlayerSelection.bind(null, playerSelection="paper"));
 scissorsButton.addEventListener("click", displayPlayerSelection.bind(null, playerSelection="scissors"));
-
-
-
-
-function playRound (playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        displaySelections(playerSelection, computerSelection)
-        console.log("It's A Draw!");
-        return "draw"
-    } else {
-        if (playerSelection === "rock") {
-            if (computerSelection === "paper") {
-                console.log("You Lose! Paper beats Rock");
-                return "lose"
-            } else {
-                console.log("You Win! Rock beats Scissors");
-                return "win"
-            } 
-        } else if (playerSelection === "paper") {
-            if (computerSelection === "rock") {
-                console.log("You Win! Paper beats Rock!");
-                return "win"
-            } else {
-                console.log("You Lose! Scissors beat Paper");
-                return "lose"
-            }
-        } else {
-            if (computerSelection === "rock") {
-                console.log("You Lose! Rock beats Scissors");
-                return "lose"
-            } else {
-                console.log("You Win! Scissors beat Paper");
-                return "win"
-            }
-        }
-    }
-}
-
-function game () {
-    while (playerScore < 3 && computerScore < 3) {        
-
-        let result = playRound(playerChoice, getComputerChoice());
-        if (result === "win") {
-            playerScore += 1;
-        } else if (result === "lose") {
-            computerScore += 1;
-        }
-        console.log(`The current score is: PLAYER ${playerScore} - ${computerScore} COMPUTER`);
-        console.log("")
-    }
-    if (playerScore === 3) {
-        console.log("GAME OVER! YOU WIN!");
-    } else {
-        console.log("GAME OVER! YOU LOSE!");
-    }
-}
-
-// game();
