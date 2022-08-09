@@ -86,28 +86,31 @@ function playRound (playerSelection, computerSelection) {
     } else {
         if (playerSelection === "rock") {
             if (computerSelection === "paper") {
-                computerScore += 1;
+                computerScores();
             } else {
-                playerScore += 1;
+                playerScores();
             } 
         } else if (playerSelection === "paper") {
             if (computerSelection === "rock") {
-                playerScore += 1;
+                playerScores();
             } else {
-                computerScore += 1;
+                computerScores();
             }
         } else if (playerSelection === "scissors") {
             if (computerSelection === "rock") {
-                computerScore += 1;
+                computerScores();
             } else {
-                playerScore += 1;
+                playerScores();
             }
         }
-        round += 1;
+        setTimeout(roundAdvance, 1000);
     }
 
+    setTimeout(() => {
+        displaySelectionEffect(spanRound);       
+    }, 1000);
 
-    enableButtons();
+    setTimeout(enableButtons(), 1000);
 
     if (playerScore === 3) {
         disableButtons();
@@ -118,6 +121,24 @@ function playRound (playerSelection, computerSelection) {
         spanMake_choice.textContent = "GAME OVER. YOU LOSE! ";
         aNew_game.textContent = "NEW GAME?"
     }
+}
+
+function playerScores() {
+    playerScore += 1;
+    spanPlayerScore.textContent = playerScore.toString();
+    displaySelectionEffect(spanPlayerScore);
+}
+
+function computerScores() {
+    computerScore += 1;
+    spanComputerScore.textContent = computerScore.toString();
+    displaySelectionEffect(spanComputerScore);
+}
+
+function roundAdvance() {
+    round += 1;
+    spanRound.textContent = round.toString();
+    displaySelectionEffect(spanRound);
 }
 
 rockButton.addEventListener("click", displayPlayerSelection.bind(null, playerSelection="rock"));        
